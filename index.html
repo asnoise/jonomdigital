@@ -6,75 +6,94 @@
     <title>Jonom Digital Services</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             text-align: center;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
+            color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             min-height: 100vh;
+            box-sizing: border-box;
         }
         .header {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         .logo {
-            max-width: 150px;
+            max-width: 200px; /* Adjusted size for visibility */
             height: auto;
         }
-        .message {
-            font-size: 1.2em;
+        .content {
+            flex-grow: 1;
+        }
+        .announcement-section {
+            font-size: 1.5em; /* Larger font size */
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         .buttons-container {
             margin-bottom: 40px;
         }
         .button {
             display: inline-block;
-            background-color: #007bff;
             color: white;
-            padding: 15px 30px;
+            padding: 15px 32px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px; /* More rounded corners */
             font-size: 1em;
+            font-weight: bold;
             margin: 10px;
-            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            min-width: 150px;
+            transition: opacity 0.3s;
         }
         .button:hover {
-            background-color: #0056b3;
+            opacity: 0.85;
         }
-        .button.support {
-            background-color: #25D366;
+        .button-google {
+            background-color: #007bff; /* Blue color from image */
         }
-        .button.support:hover {
-            background-color: #128C7E;
+        .button-support {
+            background-color: #28a745; /* Green color from image */
         }
         .footer {
-            margin-top: auto;
             padding: 20px;
-            font-size: 0.9em;
-            color: #666;
+            font-size: 1em;
+            color: #555;
         }
     </style>
 </head>
 <body>
 
     <header class="header">
+        <!-- The logo image should be placed in the same folder as this HTML file -->
         <img src="jdlogob.png" alt="Jonom Digital Logo" class="logo">
     </header>
 
-    <main>
-        <p class="message">Our Services will be working from here temporarily</p>
+    <main class="content">
+        <div class="announcement-section">
+            <p>Use this system to receive Release for user only</p>
+        </div>
+
+        <!-- ANNOUNCEMENT SECTION END -->
+
 
         <div class="buttons-container">
-            <a href="https://hosturl.link/zQnI2L" target="_blank" class="button">Google Form</a>
-            <a href="https://wa.me/918617884711" target="_blank" class="button support">Support Team</a>
+            <a href="https://hosturl.link/zQnI2L" target="_blank" class="button button-google">Submit New Release</a>
+            <a href="https://wa.me/918617884711" target="_blank" class="button button-support">Support Team</a>
         </div>
+        <main class="content">
+        <div>
+            <p> • Our system is temporarily out soon will be back with our System.</p>
+        </div>
+        </main>
     </main>
 
     <footer class="footer">
-        &copy;2018-2025 Jonom Digital&reg;
+         &copy;2018-2025 Jonom Digital&reg;
     </footer>
 
 </body>
