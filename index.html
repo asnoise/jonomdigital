@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonom Digital Artist Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 180px;
+            height: auto;
+        }
+        .search-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .search-input {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .search-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        #result, #error {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        #result {
+            background: #e8f5e9; /* Light green background */
+            text-align: left;
+            border: 1px solid #c8e6c9;
+        }
+        #error {
+            background: #ffebee; /* Light red background */
+            color: #c62828;
+             border: 1px solid #ffcdd2;
+        }
+        .info-item {
+            margin-bottom: 10px;
+        }
+        .info-item strong {
+            display: inline-block;
+            width: 120px;
+        }
+        .redirect-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .redirect-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <img src="jdlogob.png" alt="Jonom Digital Logo" class="logo">
+    </header>
+
+    <div class="search-container">
+        <h2>Artist Verification</h2>
+        <input type="email" id="emailInput" class="search-input" placeholder="Enter your email address">
+        <button onclick="searchUser()" class="search-button">Search</button>
+
+        <!-- This div will show the user's information if the email is found -->
+        <div id="result" style="display: none;">
+            <h4>Your Information:</h4>
+            <div class="info-item"><strong>Stage Name:</strong> <span id="stageName"></span></div>
+            <div class="info-item"><strong>Email:</strong> <span id="userEmail"></span></div>
+            <div class="info-item"><strong>Record Label:</strong> <span id="recordLabel"></span></div>
+            <a href="main.html" class="redirect-button">Go to Main Page</a>
+        </div>
+
+        <!-- This div will show an error message if the email is not found -->
+        <div id="error" style="display: none;">
+          <h3>SORRY !!</h3>
+         <p>We are not the Part of the System if you want Join our Team. "contact our Support team"</p>
+        </div>
+    </div>
+
+    <script>
+        // --- USER DATABASE ---
+        // To add, edit, or remove users, modify the array below.
+        const userData = [
+            { stageName: 'Nano-lc3', email: 'mdeka416@gmail.com', recordLabel: 'Nano-lc3' },
+            { stageName: 'MEMO', email: 'memosarkar@gmail.com', recordLabel: 'MEMO MUSIC' },
+            { stageName: 'Mainus', email: 'pabannath08@gmail.com', recordLabel: 'Mainus' },
+            { stageName: 'Mahinta', email: 'mahintaabhishek@gmail.com', recordLabel: 'MAHINTA MUSIC' },
+            { stageName: 'LalanJiYadav', email: 'mrlms5128@gmail.com', recordLabel: 'Unknown' },
+            { stageName: 'KAVEE', email: 'Kabirakakavee@gmail.com', recordLabel: 'Unknown' },
+            { stageName: 'Gemmi', email: 'gorosinha123@gmail.com', recordLabel: 'Unknown' },
+            { stageName: 'EREKA', email: 'ereka0457@gmail.com', recordLabel: 'EREKA MUSIC' },
+            { stageName: 'Bhawani', email: 'shankar27a@gmail.com', recordLabel: 'Unknown' },
+            { stageName: 'Bhaskar', email: 'iambhaskarjyoti815@gmail.com', recordLabel: 'Unknown' },
+            { stageName: 'BDMusic', email: 'bappidey474@gmail.com', recordLabel: 'Unknown' },
+            { stageName: 'Aughad', email: 'iamaughad@gmail.com', recordLabel: 'AUGHAD MUSIC' },
+            { stageName: 'Asnoise', email: 'ashoksarmah700@gmail.com', recordLabel: 'Jonom Digital' },
+            { stageName: 'Ananya', email: 'abbeats2.0@gmail.com', recordLabel: 'Unknown' },
+            { stageName: 'AbiGail', email: 'kritidas97@gmail.com', recordLabel: 'Unknown' }
+        ];
+        // --- END OF DATABASE ---
+
+        function searchUser() {
+            const emailToSearch = document.getElementById('emailInput').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('result');
+            const errorDiv = document.getElementById('error');
+
+            // Find the user in the userData array
+            const foundUser = userData.find(user => user.email.toLowerCase() === emailToSearch);
+
+            if (foundUser) {
+                // If user is found, display their information
+                document.getElementById('stageName').innerText = foundUser.stageName;
+                document.getElementById('userEmail').innerText = foundUser.email;
+                document.getElementById('recordLabel').innerText = foundUser.recordLabel;
+                
+                resultDiv.style.display = 'block'; // Show the result div
+                errorDiv.style.display = 'none';   // Hide the error div
+            } else {
+                // If user is not found, display the error message
+                resultDiv.style.display = 'none'; // Hide the result div
+                errorDiv.style.display = 'block'; // Show the error div
+            }
+        }
+    </script>
+
+   <footer class="footer">
+         &copy;2018-2025 Jonom Digital&reg;
+    </footer>
+</body>
+</html>
