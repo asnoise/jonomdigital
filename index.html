@@ -16,12 +16,49 @@
             align-items: center;
         }
         .header {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .logo {
             max-width: 180px;
             height: auto;
         }
+        /* --- NEW NOTIFICATION STYLES --- */
+        .notification-container {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+            text-align: right; /* Aligns the admin link to the right */
+        }
+        #notification-block {
+            background-color: #fff3cd; /* Light yellow */
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        /* Style for when the block is being edited */
+        #notification-block.editable {
+            outline: 2px dashed #007bff;
+            background-color: #eaf4ff;
+        }
+        #admin-edit-link {
+            font-size: 0.8em;
+            cursor: pointer;
+            color: #007bff;
+        }
+        #save-instructions {
+            display: none; /* Hidden by default */
+            font-size: 0.9em;
+            color: #d9534f; /* Red color for attention */
+            text-align: center;
+            margin-top: 10px;
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        /* --- END OF NOTIFICATION STYLES --- */
         .search-container {
             background: #fff;
             padding: 30px;
@@ -62,12 +99,12 @@
             border-radius: 8px;
         }
         #result {
-            background: #e8f5e9; /* Light green background */
+            background: #e8f5e9;
             text-align: left;
             border: 1px solid #c8e6c9;
         }
         #error {
-            background: #ffebee; /* Light red background */
+            background: #ffebee;
             color: #c62828;
              border: 1px solid #ffcdd2;
         }
@@ -99,12 +136,25 @@
         <img src="jdlogob.png" alt="Jonom Digital Logo" class="logo">
     </header>
 
+    <!-- ========= NEW NOTIFICATION BLOCK ========= -->
+    <div class="notification-container">
+        <div id="notification-block">
+            <!-- YOUR TEAM EDITS THE TEXT INSIDE THIS P TAG IN THE HTML FILE -->
+            <p><strong>Notice:</strong> This is a sample notification. The Jonom Digital team can edit this message.</p>
+        </div>
+        <a id="admin-edit-link" onclick="enableAdminEdit()">Admin Edit</a>
+        <div id="save-instructions">
+            <strong>Editing enabled.</strong> To save, copy the updated text and paste it into the `index.html` file on GitHub.
+        </div>
+    </div>
+    <!-- ========= END OF NOTIFICATION BLOCK ========= -->
+
+
     <div class="search-container">
         <h2>Artist Verification</h2>
         <input type="email" id="emailInput" class="search-input" placeholder="Enter your email address">
         <button onclick="searchUser()" class="search-button">Search</button>
 
-        <!-- This div will show the user's information if the email is found -->
         <div id="result" style="display: none;">
             <h4>Your Information:</h4>
             <div class="info-item"><strong>Stage Name:</strong> <span id="stageName"></span></div>
@@ -113,7 +163,6 @@
             <a href="main.html" class="redirect-button">Go to Main Page</a>
         </div>
 
-        <!-- This div will show an error message if the email is not found -->
         <div id="error" style="display: none;">
           <h3>SORRY !!</h3>
          <p>We are not the Part of the System if you want Join our Team. "contact our Support team"</p>
@@ -121,10 +170,30 @@
     </div>
 
     <script>
-        // --- USER DATABASE ---
-        // To add, edit, or remove users, modify the array below.
+        // --- NEW NOTIFICATION EDIT SCRIPT ---
+        function enableAdminEdit() {
+            const password = prompt("Please enter the admin password to edit:");
+            if (password === "@sharma") {
+                const notificationBlock = document.getElementById('notification-block');
+                const saveInstructions = document.getElementById('save-instructions');
+
+                // Make the block editable
+                notificationBlock.contentEditable = true;
+                notificationBlock.classList.add('editable');
+                
+                // Show the instructions
+                saveInstructions.style.display = 'block';
+
+                // Focus the cursor inside the block
+                notificationBlock.focus();
+            } else if (password) { // only show alert if a password was entered
+                alert("Incorrect password. You do not have permission to edit.");
+            }
+        }
+        
+        // --- EXISTING USER DATABASE SCRIPT ---
         const userData = [
-            { stageName: 'Nano-lc3', email: 'mdeka416@gmail.com', recordLabel: 'Nano-lc3' },
+             { stageName: 'Nano-lc3', email: 'mdeka416@gmail.com', recordLabel: 'Nano-lc3' },
             { stageName: 'MEMO', email: 'memosarkar@gmail.com', recordLabel: 'MEMO MUSIC' },
             { stageName: 'Mainus', email: 'pabannath08@gmail.com', recordLabel: 'Mainus' },
             { stageName: 'Mahinta', email: 'mahintaabhishek@gmail.com', recordLabel: 'MAHINTA MUSIC' },
@@ -140,28 +209,22 @@
             { stageName: 'Ananya', email: 'abbeats2.0@gmail.com', recordLabel: 'Unknown' },
             { stageName: 'AbiGail', email: 'kritidas97@gmail.com', recordLabel: 'Unknown' }
         ];
-        // --- END OF DATABASE ---
 
         function searchUser() {
             const emailToSearch = document.getElementById('emailInput').value.trim().toLowerCase();
             const resultDiv = document.getElementById('result');
             const errorDiv = document.getElementById('error');
-
-            // Find the user in the userData array
             const foundUser = userData.find(user => user.email.toLowerCase() === emailToSearch);
 
             if (foundUser) {
-                // If user is found, display their information
                 document.getElementById('stageName').innerText = foundUser.stageName;
                 document.getElementById('userEmail').innerText = foundUser.email;
                 document.getElementById('recordLabel').innerText = foundUser.recordLabel;
-                
-                resultDiv.style.display = 'block'; // Show the result div
-                errorDiv.style.display = 'none';   // Hide the error div
+                resultDiv.style.display = 'block';
+                errorDiv.style.display = 'none';
             } else {
-                // If user is not found, display the error message
-                resultDiv.style.display = 'none'; // Hide the result div
-                errorDiv.style.display = 'block'; // Show the error div
+                resultDiv.style.display = 'none';
+                errorDiv.style.display = 'block';
             }
         }
     </script>
