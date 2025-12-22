@@ -22,15 +22,14 @@
             max-width: 180px;
             height: auto;
         }
-        /* --- NOTIFICATION STYLES --- */
         .notification-container {
             width: 100%;
             max-width: 500px;
             margin-bottom: 20px;
-            text-align: right; /* Aligns the admin link to the right */
+            text-align: right;
         }
         #notification-block {
-            background-color: #fff3cd; /* Light yellow */
+            background-color: #fff3cd;
             color: #856404;
             border: 1px solid #ffeeba;
             padding: 15px;
@@ -48,7 +47,7 @@
             color: #007bff;
         }
         #save-instructions {
-            display: none; /* Hidden by default */
+            display: none;
             font-size: 0.9em;
             color: #d9534f;
             text-align: center;
@@ -57,7 +56,6 @@
             padding: 10px;
             border-radius: 4px;
         }
-        /* --- END OF NOTIFICATION STYLES --- */
         .search-container {
             background: #fff;
             padding: 30px;
@@ -89,9 +87,6 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .search-button:hover {
-            background-color: #0056b3;
-        }
         #result, #error {
             margin-top: 20px;
             padding: 20px;
@@ -122,10 +117,6 @@
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .redirect-button:hover {
-            background-color: #218838;
         }
     </style>
 </head>
@@ -141,11 +132,7 @@
             <p>Any releases submitted between December 19th and January 9th will not go live until January 19th.</p>
             <p>During that period, we will not process any catalog updates.</p>
         </div>
-        <a id="admin-edit-link" onclick="enableAdminEdit()">Admin Edit</a>
-        <div id="save-instructions">
-            <strong>Editing enabled.</strong> To save, copy the updated text and paste it into the `index.html` file on GitHub.
-        </div>
-    </div>
+     </div
 
     <div class="search-container">
         <h2>Artist Verification</h2>
@@ -177,11 +164,10 @@
                 saveInstructions.style.display = 'block';
                 notificationBlock.focus();
             } else if (password) {
-                alert("Incorrect password. You do not have permission to edit.");
+                alert("Incorrect password.");
             }
         }
         
-        // --- USER DATABASE SCRIPT ---
         const userData = [
             { stageName: 'Nano-lc3', email: 'mdeka416@gmail.com', recordLabel: 'Nano-lc3' },
             { stageName: 'MEMO', email: 'memosarkar@gmail.com', recordLabel: 'MEMO MUSIC' },
@@ -198,7 +184,6 @@
             { stageName: 'Asnoise', email: 'ashoksarmah700@gmail.com', recordLabel: 'Jonom Digital' },
             { stageName: 'Ananya', email: 'abbeats2.0@gmail.com', recordLabel: 'Unknown' },
             { stageName: 'AbiGail', email: 'kritidas97@gmail.com', recordLabel: 'Unknown' },
-            // --- THIS IS THE CORRECTED USER ENTRY ---
             { stageName: 'Zafraj Ahmed', email: 'abir06451@gmail.com', recordLabel: 'Zafraj Ahmed' }
         ];
 
@@ -221,7 +206,7 @@
         }
     </script>
 
-    <!-- Ad Script 1 -->
+    <!-- Ad Script is placed here -->
     <script>
     (function(eco){
     var d = document,
@@ -234,7 +219,7 @@
     l.parentNode.insertBefore(s, l);
     })({})
     </script>
-    <!-- End of Ad Script 1 -->
+    <!-- End of Ad Script -->
 
    <footer class="footer">
          &copy;2018-2025 Jonom Digital&reg;
