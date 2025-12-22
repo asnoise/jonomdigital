@@ -22,7 +22,7 @@
             max-width: 180px;
             height: auto;
         }
-        /* --- NEW NOTIFICATION STYLES --- */
+        /* --- NOTIFICATION STYLES --- */
         .notification-container {
             width: 100%;
             max-width: 500px;
@@ -38,7 +38,6 @@
             text-align: center;
             margin-bottom: 5px;
         }
-        /* Style for when the block is being edited */
         #notification-block.editable {
             outline: 2px dashed #007bff;
             background-color: #eaf4ff;
@@ -51,7 +50,7 @@
         #save-instructions {
             display: none; /* Hidden by default */
             font-size: 0.9em;
-            color: #d9534f; /* Red color for attention */
+            color: #d9534f;
             text-align: center;
             margin-top: 10px;
             background: #f8d7da;
@@ -136,10 +135,8 @@
         <img src="jdlogob.png" alt="Jonom Digital Logo" class="logo">
     </header>
 
-    <!-- ========= NOTIFICATION BLOCK ========= -->
     <div class="notification-container">
         <div id="notification-block">
-            <!-- YOUR TEAM EDITS THE TEXT INSIDE THIS DIV IN THE HTML FILE -->
             <p><strong>Notice:</strong></p>
             <p>Any releases submitted between December 19th and January 9th will not go live until January 19th.</p>
             <p>During that period, we will not process any catalog updates.</p>
@@ -149,8 +146,6 @@
             <strong>Editing enabled.</strong> To save, copy the updated text and paste it into the `index.html` file on GitHub.
         </div>
     </div>
-    <!-- ========= END OF NOTIFICATION BLOCK ========= -->
-
 
     <div class="search-container">
         <h2>Artist Verification</h2>
@@ -172,28 +167,21 @@
     </div>
 
     <script>
-        // --- NEW NOTIFICATION EDIT SCRIPT ---
         function enableAdminEdit() {
             const password = prompt("Please enter the admin password to edit:");
             if (password === "@sharma") {
                 const notificationBlock = document.getElementById('notification-block');
                 const saveInstructions = document.getElementById('save-instructions');
-
-                // Make the block editable
                 notificationBlock.contentEditable = true;
                 notificationBlock.classList.add('editable');
-                
-                // Show the instructions
                 saveInstructions.style.display = 'block';
-
-                // Focus the cursor inside the block
                 notificationBlock.focus();
-            } else if (password) { // only show alert if a password was entered
+            } else if (password) {
                 alert("Incorrect password. You do not have permission to edit.");
             }
         }
         
-        // --- EXISTING USER DATABASE SCRIPT ---
+        // --- USER DATABASE SCRIPT ---
         const userData = [
             { stageName: 'Nano-lc3', email: 'mdeka416@gmail.com', recordLabel: 'Nano-lc3' },
             { stageName: 'MEMO', email: 'memosarkar@gmail.com', recordLabel: 'MEMO MUSIC' },
@@ -210,9 +198,9 @@
             { stageName: 'Asnoise', email: 'ashoksarmah700@gmail.com', recordLabel: 'Jonom Digital' },
             { stageName: 'Ananya', email: 'abbeats2.0@gmail.com', recordLabel: 'Unknown' },
             { stageName: 'AbiGail', email: 'kritidas97@gmail.com', recordLabel: 'Unknown' },
-            // --- NEW USER ADDED HERE ---
+            // --- THIS IS THE CORRECTED USER ENTRY ---
             { stageName: 'Zafraj Ahmed', email: 'abir06451@gmail.com', recordLabel: 'Zafraj Ahmed' }
-            ];
+        ];
 
         function searchUser() {
             const emailToSearch = document.getElementById('emailInput').value.trim().toLowerCase();
