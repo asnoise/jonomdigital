@@ -136,13 +136,17 @@
         <img src="jdlogob.png" alt="Jonom Digital Logo" class="logo">
     </header>
 
-    <!-- ========= NEW NOTIFICATION BLOCK ========= -->
+    <!-- ========= NOTIFICATION BLOCK ========= -->
     <div class="notification-container">
         <div id="notification-block">
-            <!-- YOUR TEAM EDITS THE TEXT INSIDE THIS P TAG IN THE HTML FILE -->
+            <!-- YOUR TEAM EDITS THE TEXT INSIDE THIS DIV IN THE HTML FILE -->
             <p><strong>Notice:</strong></p>
             <p>Any releases submitted between December 19th and January 9th will not go live until January 19th.</p>
-            <p></p>During that period, we will not process any catalog updates.</p>
+            <p>During that period, we will not process any catalog updates.</p>
+        </div>
+        <a id="admin-edit-link" onclick="enableAdminEdit()">Admin Edit</a>
+        <div id="save-instructions">
+            <strong>Editing enabled.</strong> To save, copy the updated text and paste it into the `index.html` file on GitHub.
         </div>
     </div>
     <!-- ========= END OF NOTIFICATION BLOCK ========= -->
@@ -206,8 +210,9 @@
             { stageName: 'Asnoise', email: 'ashoksarmah700@gmail.com', recordLabel: 'Jonom Digital' },
             { stageName: 'Ananya', email: 'abbeats2.0@gmail.com', recordLabel: 'Unknown' },
             { stageName: 'AbiGail', email: 'kritidas97@gmail.com', recordLabel: 'Unknown' },
-            { stageName: 'Zafraj Ahmed', email: 'mdeka416@gmail.com', recordLabel: 'Zafraj Ahmed' }
-        ];
+            // --- NEW USER ADDED HERE ---
+            { stageName: 'Zafraj Ahmed', email: 'abir06451@gmail.com', recordLabel: 'Zafraj Ahmed' }
+            ];
 
         function searchUser() {
             const emailToSearch = document.getElementById('emailInput').value.trim().toLowerCase();
