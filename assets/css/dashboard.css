@@ -1,0 +1,987 @@
+/* =========================================================================
+   JONOM DIGITAL - GLOBAL STYLING VARIABLES & RESET
+   ========================================================================= */
+:root {
+    --bg-dark: #09090a;
+    --bg-sidebar: #121214;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-hover: rgba(255, 255, 255, 0.06);
+    --accent: #1db954; /* Jonom Spotify Green */
+    --accent-hover: #1ed760;
+    --text-primary: #ffffff;
+    --text-secondary: #a7a7a7;
+    --text-disabled: #535353;
+    
+    --success: #2ecc71;
+    --warning: #f1c40f;
+    --error: #e74c3c;
+    --pending: #3498db;
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* =========================================================================
+   APPLICATION CONTAINER & LAYOUT WRAPPERS
+   ========================================================================= */
+.app-container {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Main Content Area */
+.content-wrapper {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+}
+
+/* =========================================================================
+   SIDEBAR NAVIGATION SYSTEM
+   ========================================================================= */
+.sidebar-aside {
+    width: 280px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: var(--transition-smooth);
+}
+
+.sidebar-brand {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-logo {
+    max-height: 40px;
+    width: auto;
+    filter: drop-shadow(0px 0px 8px rgba(29, 185, 84, 0.2));
+}
+
+.sidebar-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* Hidden on Desktop */
+}
+
+/* User Card inside Sidebar */
+.sidebar-profile-card {
+    margin: 0 20px 20px 20px;
+    padding: 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #0f5c2a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #000000;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.profile-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.role-pill {
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+/* Sidebar Menu Items */
+.sidebar-nav {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 20px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-left: 3px solid transparent;
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    background-color: var(--glass-hover);
+}
+
+.nav-link.active {
+    color: var(--text-primary);
+    background-color: rgba(29, 185, 84, 0.1);
+    border-left-color: var(--accent);
+    font-weight: 600;
+    padding-left: 13px; /* Offset spacing for visual balance */
+}
+
+.nav-link i {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.badge {
+    margin-left: auto;
+    font-size: 0.75rem;
+    background: var(--accent);
+    color: #000000;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.badge-accent {
+    background: var(--border-color);
+    color: var(--text-primary);
+}
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    color: var(--error);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: opacity 0.2s;
+}
+
+.logout-btn:hover {
+    opacity: 0.8;
+}
+
+/* =========================================================================
+   TOP HEADER NAVIGATION BAR
+   ========================================================================= */
+.top-header {
+    height: 70px;
+    background: rgba(9, 9, 10, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 990;
+}
+
+.mobile-menu-toggle {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: none; /* Hidden on Desktop */
+}
+
+/* Search Bar */
+.search-container {
+    position: relative;
+    width: 320px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.search-container input {
+    width: 100%;
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    padding: 10px 16px 10px 40px;
+    color: var(--text-primary);
+    outline: none;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+}
+
+.search-container input:focus {
+    border-color: var(--accent);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.icon-btn:hover {
+    background: var(--glass-hover);
+}
+
+.icon-btn .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--error);
+    color: #ffffff;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+}
+
+/* Dropdown Shells */
+.notification-wrapper, .profile-wrapper {
+    position: relative;
+}
+
+.glass-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 15px);
+    background: rgba(18, 18, 20, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    overflow: hidden;
+    z-index: 1001;
+    animation: dropdownFade 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.notification-dropdown {
+    width: 360px;
+}
+
+.dropdown-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-header h3 {
+    font-size: 0.95rem;
+}
+
+.notification-list {
+    list-style: none;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    gap: 12px;
+}
+
+.notification-item.unread {
+    background: rgba(29, 185, 84, 0.03);
+}
+
+.notif-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.notif-icon.approved { background: rgba(46, 204, 113, 0.1); color: var(--success); }
+.notif-icon.royalty { background: rgba(29, 185, 84, 0.1); color: var(--accent); }
+.notif-icon.correction { background: rgba(231, 76, 60, 0.1); color: var(--error); }
+
+.notif-content p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--text-primary);
+}
+
+.notif-time {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* User Profile Trigger Bar */
+.profile-trigger {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    padding: 6px 16px 6px 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+.profile-trigger:hover {
+    background: var(--glass-hover);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.avatar-placeholder {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.user-display-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.profile-dropdown {
+    width: 220px;
+}
+
+.dropdown-user-info {
+    padding: 16px;
+}
+
+.dropdown-user-info .name {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.dropdown-user-info .role-badge {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-top: 2px;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+}
+
+.dropdown-item:hover {
+    color: var(--text-primary);
+    background: var(--glass-hover);
+}
+
+.dropdown-item.logout-link {
+    color: var(--error);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================================================
+   DASHBOARD BODY CONTENT & WIDGETS
+   ========================================================================= */
+.dashboard-body {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+    background: linear-gradient(135deg, rgba(29, 185, 84, 0.15) 0%, rgba(9, 9, 10, 0) 100%);
+    border: 1px solid rgba(29, 185, 84, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.welcome-banner h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.welcome-banner p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.banner-cta {
+    background: var(--accent);
+    color: #000000;
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-smooth);
+}
+
+.banner-cta:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(29, 185, 84, 0.3);
+}
+
+/* Metric Cards Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.metric-card {
+    padding: 24px;
+    transition: var(--transition-smooth);
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.card-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.card-icon.earnings { background: rgba(29,185,84,0.1); color: var(--accent); }
+.card-icon.active-rel { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+.card-icon.pending { background: rgba(52,152,219,0.1); color: var(--pending); }
+.card-icon.correction { background: rgba(231,76,60,0.1); color: var(--error); }
+
+.card-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.card-meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.card-meta.trend-up { color: var(--success); }
+.card-meta.warning { color: var(--warning); }
+.card-meta.error { color: var(--error); }
+
+/* Charts Grid Layout */
+.charts-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.chart-container {
+    padding: 24px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.chart-header h3 {
+    font-size: 1.05rem;
+}
+
+.chart-canvas-wrapper {
+    height: 300px;
+    position: relative;
+    width: 100%;
+}
+
+/* Recent Submissions Table */
+.table-section {
+    padding: 24px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.view-all-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.2s;
+}
+
+.view-all-link:hover {
+    opacity: 0.8;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.custom-table th, .custom-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.custom-table th {
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.table-art {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.status-pill {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-live { background: rgba(46, 204, 113, 0.1); color: var(--success); }
+.status-pending { background: rgba(52, 152, 219, 0.1); color: var(--pending); }
+.status-correction { background: rgba(231, 76, 60, 0.1); color: var(--error); }
+
+.table-action-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-action-btn:hover {
+    background: var(--glass-hover);
+}
+
+.table-action-btn.edit {
+    color: var(--warning);
+}
+
+/* =========================================================================
+   MOBILE RESPONSIVENESS AND OVERLAY STYLING
+   ========================================================================= */
+
+/* Mobile backdrop dim overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 995;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.hidden {
+    display: none !important;
+}
+
+@media (max-width: 1024px) {
+    .charts-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Hide desktop sidebar */
+    .sidebar-aside {
+        transform: translateX(-100%);
+        box-shadow: none;
+    }
+    
+    .sidebar-aside.open {
+        transform: translateX(0);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.7);
+    }
+    
+    .sidebar-close-btn {
+        display: block !important;
+    }
+    
+    .content-wrapper {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    .top-header {
+        padding: 0 20px !important;
+    }
+    
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+
+    .search-container {
+        display: none; /* Collapse search elements for clean mobile alignment */
+    }
+
+    .dashboard-body {
+        padding: 16px !important;
+        gap: 24px;
+    }
+
+    .welcome-banner {
+        padding: 24px !important;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .welcome-banner h1 {
+        font-size: 1.6rem !important;
+    }
+
+    .banner-cta {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Adjust notification dropdown width for tablet screens */
+    .notification-dropdown {
+        width: 300px;
+        right: -40px; 
+    }
+}
+
+/* Specific optimization for small mobile devices (<= 480px) */
+@media (max-width: 480px) {
+    /* 
+       To bypass the header backdrop-filter containing block bug, we shift 
+       the dropdown leftwards precisely using relative right-margins.
+    */
+    .notification-dropdown {
+        position: absolute !important;
+        width: 290px !important;
+        right: -55px !important; /* Shifts the menu leftwards to center under the bell icon */
+        left: auto !important;
+        top: calc(100% + 15px) !important;
+    }
+    
+    .profile-dropdown {
+        position: absolute !important;
+        width: 210px !important;
+        right: -10px !important; /* Aligns comfortably with the avatar */
+        left: auto !important;
+        top: calc(100% + 15px) !important;
+    }
+
+    /* Ensure text wrapping handles viewport dimensions nicely */
+    .notif-content p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        color: var(--text-primary);
+        white-space: normal !important;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .dropdown-header h3 {
+        font-size: 0.9rem;
+    }
+}
+/* =========================================================================
+   MOBILE BOTTOM FLOATING NAVIGATION BAR (CORS & BACKEND FREE) [1]
+   ========================================================================= */
+
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    background-color: #ffffff; /* Matches your design image exactly [1] */
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 1005;
+    display: none; /* Hidden on desktop screens by default */
+    padding-bottom: env(safe-area-inset-bottom); /* iOS notch safe spacing */
+}
+
+.mobile-nav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    padding: 0 10px;
+}
+
+.mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #8a8d99; /* Grey inactive state [1] */
+    width: 20%;
+    height: 100%;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.mobile-nav-icon {
+    font-size: 1.3rem;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-nav-text {
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* Active State [1] */
+.mobile-nav-item.active {
+    color: var(--accent); /* Spotify Green active state */
+}
+
+/* Dynamic Active Indicator Dot below text [1] */
+.mobile-nav-item .active-dot {
+    width: 5px;
+    height: 5px;
+    background-color: transparent;
+    border-radius: 50%;
+    margin-top: 4px;
+    transition: var(--transition-smooth);
+}
+
+.mobile-nav-item.active .active-dot {
+    background-color: var(--accent); /* Renders green dot below active text */
+}
+
+/* Raised Central Floating Action Button Wrapper */
+.mobile-nav-center-btn-wrapper {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-nav-center-btn {
+    position: absolute;
+    top: -30px; /* Raises the button above the bar [1] */
+    width: 64px;
+    height: 64px;
+    background-color: var(--accent);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
+    
+    /* 
+       CLEVER VISUAL ILLUSION:
+       A thick dark border matching your website background (#09090a) creates 
+       the illusion of a smooth curved cutout inside the white nav bar [1]!
+    */
+    border: 5px solid var(--bg-dark); 
+    
+    transition: var(--transition-smooth);
+}
+
+.mobile-nav-center-btn:active {
+    transform: scale(0.95);
+    background-color: var(--accent-hover);
+}
+
+/* Enforce Responsive Breakpoints */
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        display: block !important; /* Enable on mobile viewports [1] */
+    }
+    
+    /* Add padding to dashboard bodies to prevent bottom nav from overlapping content */
+    .dashboard-body {
+        padding-bottom: 100px !important;
+    }
+}
