@@ -1,0 +1,31 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    // Enable secure session cookie flags
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', 1);
+    ini_set('session.use_only_cookies', 1);
+    session_start();
+}
+
+function checkAccess(array $allowedRoles = []) {
+    // 1. Authenticated validation
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['role'])) {
+        header('Location: ' . SITE_URL . '/index.php');
+        exit();
+    }
+
+    // 2. Session Hijacking Prevention (Session Fingerprint Verification)
+    $fingerprint = md5($_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR']);
+    if (!isset($_SESSION['fingerprint']) || $_SESSION['fingerprint'] !== $fingerprint) {
+        session_destroy();
+        header('Location: ' . SITE_URL . '/index.php?error=session_invalidated');
+        exit();
+    }
+
+    // 3. Role validation
+    if (!empty($allowedRoles) && !in_array($_SESSION['role'], $allowedRoles)) {
+        header('HTTP/1.1 403 Forbidden');
+        echo "<h1>Access Denied</h1><p>You do not have the required permissions to access this dashboard.</p>";
+        exit();
+    }
+}
